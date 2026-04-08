@@ -4,41 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Country Guesser Game</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #game { text-align: center; margin: 20px; }
+        .score { font-size: 24px; }
+        .hint { font-size: 18px; color: #555; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌍 Country Guesser Game</h1>
-        
-        <div class="game-info">
-            <p class="score">Score: <span id="score">0</span></p>
-            <p class="attempts">Attempts Left: <span id="attempts">5</span></p>
-        </div>
-
+    <div id="game">
+        <h1>Country Guesser</h1>
+        <p class="score">Score: <span id="score">0</span></p>
         <div id="map"></div>
-
-        <div class="game-controls">
-            <input 
-                type="text" 
-                id="guessInput" 
-                placeholder="Type your country guess..." 
-                autocomplete="off"
-            >
-            <button onclick="submitGuess()" class="submit-btn">Submit Guess</button>
-        </div>
-
-        <div id="feedback" class="feedback"></div>
-
-        <div id="gameOver" class="game-over hidden">
-            <h2 id="gameOverMessage"></h2>
-            <p id="correctAnswer"></p>
-            <button onclick="newGame()" class="play-again-btn">Play Again</button>
-        </div>
+        <p class="hint" id="hint"></p>
+        <input type="text" id="guess" placeholder="Enter country name">
+        <button id="submit">Submit Guess</button>
     </div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="countries.js"></script>
-    <script src="game.js"></script>
+    <script>
+        const countries = [
+            // Sample list of countries (expand to 200 countries as needed)
+            { name: 'Afghanistan', lat: 33. intimidated to find out they are wrong!
+            hence mountains cover *more* than half. Good Luck!  ",
+            { name: 'Albania', lat: 41.1533, lng: 20.1683 },
+            // ... add all 200 countries here
+        ];
+
+        let score = 0;
+        let currentCountry;
+
+        function getRandomCountry() {
+            currentCountry = countries[Math.floor(Math.random() * countries.length)];
+            document.getElementById('hint').innerText = 'Guess where this country is located!';
+            // Code to display map related to currentCountry
+            // Example: displayMap(currentCountry.lat, currentCountry.lng);
+        }
+
+        function submitGuess() {
+            const guess = document.getElementById('guess').value;
+            if (guess.toLowerCase() === currentCountry.name.toLowerCase()) {
+                score += 10;
+                document.getElementById('score').innerText = score;
+                alert('Correct!');
+                getRandomCountry();
+            } else {
+                alert('Wrong, try again!');
+            }
+            document.getElementById('guess').value = '';
+        }
+
+        document.getElementById('submit').addEventListener('click', submitGuess);
+        getRandomCountry();
+    </script>
 </body>
 </html>
