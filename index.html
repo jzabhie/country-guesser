@@ -4,12 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Country Guesser Game</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to the Country Guesser Game!</h1>
-    <p>Guess the country based on the hints provided.</p>
-    <script>
-        // Placeholder for game logic
-    </script>
+    <div class="container">
+        <h1>🌍 Country Guesser Game</h1>
+        
+        <div class="game-info">
+            <p class="score">Score: <span id="score">0</span></p>
+            <p class="attempts">Attempts Left: <span id="attempts">5</span></p>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="game-controls">
+            <input 
+                type="text" 
+                id="guessInput" 
+                placeholder="Type your country guess..." 
+                autocomplete="off"
+            >
+            <button onclick="submitGuess()" class="submit-btn">Submit Guess</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+
+        <div id="gameOver" class="game-over hidden">
+            <h2 id="gameOverMessage"></h2>
+            <p id="correctAnswer"></p>
+            <button onclick="newGame()" class="play-again-btn">Play Again</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="countries.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
